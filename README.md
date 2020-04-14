@@ -28,7 +28,10 @@ Efficient
 # author
 Ifaz Ahmed Aflan
 
-# credit
+## credit
+I have used an API developed by
 Sadman Muhib Samyo - API
+
+The source is IEDCR.
 ```
 
