@@ -27,5 +27,8 @@ Efficient
 
 # author
 Ifaz Ahmed Aflan
+
+# credit
+Sadman Muhib Samyo - API
 ```
 
