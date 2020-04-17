@@ -14,7 +14,7 @@ class ChartSection1 extends Component {
 
 	getChartData() {
 		let total = 0;
-		const myList = this.props.data;
+		const myList = this.props.districtData;
 		const arrObjectKeys = Object.keys(myList);
 		let labels = [];
 		let tempLabels = arrObjectKeys.map(function(key, index) {

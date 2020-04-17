@@ -4,30 +4,71 @@ import AdminCardSection1 from './sections/AdminCardSection1';
 import TableSection from './sections/TableSection';
 import ChartSection1 from './sections/ChartSection1';
 import ChartSection2 from './sections/ChartSection2';
+import { divisions } from '../../constants';
 
 export default class DashboardPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: {},
+			districtData: [],
+			divisionalCount: [],
 			label: {},
 		};
 	}
+
 	componentDidMount() {
-		axios
-			.get('https://corona-bd.herokuapp.com/district')
-			.then((response) => {
-				//console.log(response.data.data);
-				this.setState({ data: response.data.data });
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		this.fetchData();
 	}
+
+	async fetchData() {
+		try {
+			const response = await axios.get(
+				'https://corona-bd.herokuapp.com/district'
+			);
+			const divisionalCount = this.getDivisionalCount(
+				divisions,
+				response.data.data
+			);
+			this.setState({
+				districtData: response.data.data,
+				divisionalCount,
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	}
+
+	getDivisionalCount(divisionList, data) {
+		// get total counts for given division
+		// if (data.length === 0 || Object.keys(divisionList).length === 0)
+		// 	return [];
+
+		const divisionLabels = Object.keys(divisionList);
+		let list = [];
+
+		divisionLabels.forEach((division) => {
+			const count = data.reduce((acc, item) => {
+				if (
+					divisionList[division].findIndex((i) => i === item.name) !==
+					-1
+				) {
+					return acc + item.count;
+				}
+				return acc;
+			}, 0);
+
+			list.push({ name: division, count });
+		});
+
+		// sort the list
+		list = list.sort((a, b) => b.count - a.count);
+		return list;
+	}
+
 	// Used in side "totalinfectedcomponent"
 	countTotal() {
 		let total = 0;
-		const myList = this.state.data;
+		const myList = this.state.districtData;
 		Object.keys(myList).forEach(function(key, index) {
 			total = total + myList[key].count;
 		});
@@ -48,11 +89,17 @@ export default class DashboardPage extends Component {
 				</h2>
 				<br />
 				<br />
-				<AdminCardSection1 data={this.state.data} />
+				<AdminCardSection1
+					districtData={this.state.districtData}
+					divisionalCount={this.state.divisionalCount}
+				/>
 				<hr />
-				<ChartSection1 data={this.state.data} />
-				<TableSection data={this.state.data} />
-				<ChartSection2 data={this.state.data} />
+				<ChartSection1 districtData={this.state.districtData} />
+				<TableSection districtData={this.state.districtData} />
+				<ChartSection2
+					districtData={this.state.districtData}
+					divisionalCount={this.state.divisionalCount}
+				/>
 			</React.Fragment>
 		);
 	}

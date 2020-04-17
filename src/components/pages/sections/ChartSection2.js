@@ -3,60 +3,28 @@ import axios from 'axios';
 import { MDBCol, MDBCard, MDBCardBody, MDBCardHeader, MDBRow } from 'mdbreact';
 import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import { Doughnut } from 'react-chartjs-2';
-import {
-	dhakaDivision,
-	rajshahiDivision,
-	rangpurDivision,
-	chittagongDivision,
-	khulnaDivision,
-	barishalDivision,
-	mymensinghDivision,
-	sylhetDivision,
-} from '../../../constants';
+import { divisions } from '../../../constants';
 
 class ChartSection2 extends Component {
-	getDataByArray(arrCity) {
-		let total = 0;
-		const myList = this.props.data;
-		let arrData = [];
-		const filterdIndex = Object.keys(myList).filter(function(key, index) {
-			const item = myList[key];
-			return arrCity.find((city) => city === item.name);
-		});
-		const filterdData = filterdIndex.forEach(function(key) {
-			arrData.push(myList[key]);
-		});
-		arrData.forEach(function(element) {
-			total = total + element.count;
-			//console.log("getDataByArray ", element.name)
-		});
-		return total;
+	renderDivisionRows() {
+		return this.props.divisionalCount.map((item, index) => (
+			<tr key={item.name}>
+				<td>{index + 1}</td>
+				<td>{item.name}</td>
+				<td>{item.count}</td>
+			</tr>
+		));
 	}
+
 	render() {
+		const divisionInfo = this.props.divisionalCount;
+
 		const dataDoughnut = {
-			labels: [
-				'Dhaka',
-				'Mymensingh',
-				'Sylhet',
-				'Rangpur',
-				'Rajshahi',
-				'Chittagong',
-				'Barishal',
-				'Khulna',
-			],
+			labels: divisionInfo.map((item) => item.name),
 			datasets: [
 				{
 					// API CALL
-					data: [
-						this.getDataByArray(dhakaDivision),
-						this.getDataByArray(mymensinghDivision),
-						this.getDataByArray(sylhetDivision),
-						this.getDataByArray(rangpurDivision),
-						this.getDataByArray(rajshahiDivision),
-						this.getDataByArray(chittagongDivision),
-						this.getDataByArray(barishalDivision),
-						this.getDataByArray(khulnaDivision),
-					],
+					data: divisionInfo.map((item) => item.count),
 					backgroundColor: [
 						'#F7464A',
 						'#46BFBD',
@@ -109,66 +77,7 @@ class ChartSection2 extends Component {
 								</tr>
 							</MDBTableHead>
 							<MDBTableBody>
-								<tr>
-									<td>1</td>
-									<td>Dhaka Division</td>
-									<td>
-										{this.getDataByArray(dhakaDivision)}
-									</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Rangpur Division</td>
-									<td>
-										{this.getDataByArray(rangpurDivision)}
-									</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Rajshahi Division</td>
-									<td>
-										{this.getDataByArray(rajshahiDivision)}
-									</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>Mymensingh Division</td>
-									<td>
-										{this.getDataByArray(
-											mymensinghDivision
-										)}
-									</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>Sylhet Division</td>
-									<td>
-										{this.getDataByArray(sylhetDivision)}
-									</td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td>Khulna Division</td>
-									<td>
-										{this.getDataByArray(khulnaDivision)}
-									</td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td>Barishal Division</td>
-									<td>
-										{this.getDataByArray(barishalDivision)}
-									</td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td>Chittagong Division</td>
-									<td>
-										{this.getDataByArray(
-											chittagongDivision
-										)}
-									</td>
-								</tr>
+								{this.renderDivisionRows()}
 							</MDBTableBody>
 						</MDBTable>
 					</MDBCard>

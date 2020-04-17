@@ -21,7 +21,7 @@ const Footer = () => {
 				</MDBBtn>
 				<hr className='my4' />
 			</div>
-			<div>
+			<div className='text-center'>
 				<a
 					href='https://www.linkedin.com/in/ifazahmed'
 					rel='noopener noreferrer'
@@ -36,9 +36,26 @@ const Footer = () => {
 				>
 					<MDBIcon fab icon='github' className='mr-3' />
 				</a>
-				<p
+				<p className='text-center' style={{ fontSize: '1em' }}>
+					Created using{' '}
+					<a
+						rel='noopener noreferrer'
+						target='_blank'
+						href='https://www.MDBootstrap.com'
+					>
+						{' '}
+						MDBootstrap.com{' '}
+					</a>
+				</p>
+			</div>
+			<p className='footer-copyright py-3 text-center'>
+				<span
 					className='text-center'
-					style={{ color: 'rgba(255, 255, 255, 0.8)' }}
+					style={{
+						color: 'rgba(255, 255, 255, 0.8)',
+						margin: 0,
+						padding: 0,
+					}}
 				>
 					All data provided by{' '}
 					<a
@@ -56,18 +73,7 @@ const Footer = () => {
 					>
 						Ahmed Sadman
 					</a>
-				</p>
-			</div>
-			<p className='footer-copyright mb-0 py-3 text-center'>
-				Created using{' '}
-				<a
-					rel='noopener noreferrer'
-					target='_blank'
-					href='https://www.MDBootstrap.com'
-				>
-					{' '}
-					MDBootstrap.com{' '}
-				</a>
+				</span>
 			</p>
 		</MDBFooter>
 	);
