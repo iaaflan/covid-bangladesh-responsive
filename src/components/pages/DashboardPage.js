@@ -12,12 +12,16 @@ export default class DashboardPage extends Component {
 		this.state = {
 			districtData: [],
 			divisionalCount: [],
-			label: {},
+			totalInfected: null,
+			totalDeath: null,
+			totalRecovered: null,
+			lastUpdate: '',
 		};
 	}
 
 	componentDidMount() {
 		this.fetchData();
+		this.fetchCount();
 	}
 
 	async fetchData() {
@@ -32,6 +36,23 @@ export default class DashboardPage extends Component {
 			this.setState({
 				districtData: response.data.data,
 				divisionalCount,
+				lastUpdate: response.data.updated_on,
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	}
+
+	async fetchCount() {
+		try {
+			const response = await axios.get(
+				'https://covid19.mathdro.id/api/countries/BD'
+			);
+			const { data } = response;
+			this.setState({
+				totalDeath: data.deaths.value,
+				totalInfected: data.confirmed.value,
+				totalRecovered: data.recovered.value,
 			});
 		} catch (e) {
 			console.log(e);
@@ -65,15 +86,6 @@ export default class DashboardPage extends Component {
 		return list;
 	}
 
-	// Used in side "totalinfectedcomponent"
-	countTotal() {
-		let total = 0;
-		const myList = this.state.districtData;
-		Object.keys(myList).forEach(function(key, index) {
-			total = total + myList[key].count;
-		});
-		return total;
-	}
 	render() {
 		return (
 			<React.Fragment>
@@ -84,11 +96,16 @@ export default class DashboardPage extends Component {
 					</span>{' '}
 					- Statistics
 				</h1>
-				<h2 style={{ textAlign: 'center' }}>
-					Total Infected: <b>{this.countTotal()}</b>
-				</h2>
+				<h3 style={{ textAlign: 'center' }}>
+					Infected: <b>{this.state.totalInfected}</b>&nbsp; Death:{' '}
+					<b>{this.state.totalDeath}</b>
+				</h3>
+				<h3 style={{ textAlign: 'center' }}>
+					Recovered: <b>{this.state.totalRecovered}</b>
+				</h3>
 				<br />
 				<br />
+
 				<AdminCardSection1
 					districtData={this.state.districtData}
 					divisionalCount={this.state.divisionalCount}

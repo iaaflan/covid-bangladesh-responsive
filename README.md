@@ -1,10 +1,10 @@
 # Covid-Bangladesh
 
-> Robust version of: http://covid-bangladesh.herokuapp.com/
+> Robust version of: https://bdcovid19.herokuapp.com
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 yarn
 
@@ -34,4 +34,3 @@ Sadman Muhib Samyo - API
 
 The source is IEDCR.
 ```
-
