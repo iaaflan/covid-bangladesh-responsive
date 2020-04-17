@@ -21,33 +21,70 @@ const Footer = () => {
 				</MDBBtn>
 				<hr className='my4' />
 			</div>
-			<div className='text-center'>
-				<a
-					href='https://www.linkedin.com/in/ifazahmed'
-					rel='noopener noreferrer'
-					target='_blank'
+			<div
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
+			>
+				<div
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						marginRight: '8%',
+					}}
 				>
-					<MDBIcon fab icon='linkedin' className='mr-3' />
-				</a>
-				<a
-					href='https://github.com/Aflan-63'
-					rel='noopener noreferrer'
-					target='_blank'
+					<div>
+						<a
+							href='https://www.linkedin.com/in/ifazahmed'
+							rel='noopener noreferrer'
+							target='_blank'
+						>
+							<MDBIcon fab icon='linkedin' className='mr-3' />
+						</a>
+						<a
+							href='https://github.com/Aflan-63'
+							rel='noopener noreferrer'
+							target='_blank'
+						>
+							<MDBIcon fab icon='github' />
+						</a>
+					</div>
+					<div style={{ fontSize: '1.1em' }} className='pb-3'>
+						Aflan
+					</div>
+				</div>
+
+				<div
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						marginRight: '20px',
+					}}
 				>
-					<MDBIcon fab icon='github' className='mr-3' />
-				</a>
-				<p className='text-center' style={{ fontSize: '1em' }}>
-					Created using{' '}
-					<a
-						rel='noopener noreferrer'
-						target='_blank'
-						href='https://www.MDBootstrap.com'
-					>
-						{' '}
-						MDBootstrap.com{' '}
-					</a>
-				</p>
+					<div>
+						<a
+							href='https://www.linkedin.com/in/ahmed-sadman'
+							rel='noopener noreferrer'
+							target='_blank'
+						>
+							<MDBIcon fab icon='linkedin' className='mr-3' />
+						</a>
+						<a
+							href='https://github.com/ahmedsadman'
+							rel='noopener noreferrer'
+							target='_blank'
+						>
+							<MDBIcon fab icon='github' />
+						</a>
+					</div>
+					<div style={{ fontSize: '1.1em' }} className='pb-3'>
+						Samyo
+					</div>
+				</div>
 			</div>
+
 			<p className='footer-copyright py-3 text-center'>
 				<span
 					className='text-center'
@@ -57,21 +94,13 @@ const Footer = () => {
 						padding: 0,
 					}}
 				>
-					All data provided by{' '}
+					All data provided by the public API{' '}
 					<a
 						href='https://github.com/ahmedsadman/covid19-bd'
 						target='_blank'
 						rel='noopener noreferrer'
 					>
 						covid19-bd
-					</a>
-					, a public API created by&nbsp;
-					<a
-						href='https://github.com/ahmedsadman'
-						target='_blank'
-						rel='noopener noreferrer'
-					>
-						Ahmed Sadman
 					</a>
 				</span>
 			</p>

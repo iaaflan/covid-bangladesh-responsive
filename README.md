@@ -1,10 +1,11 @@
 # Covid-Bangladesh
 
-> Robust version of: https://bdcovid19.herokuapp.com
+> Live Site: https://bdcovid19.herokuapp.com
 
 ## Build Setup
 
-```bash
+```
+bash
 # install dependencies
 yarn
 
@@ -16,21 +17,28 @@ yarn build
 
 # build for production and view the bundle analyzer report
 yarn build --report
+```
 
-# features
-Mobile Friendly
-District Based Information
-Division Based Information
-Donut Chart
-Responsive
-Efficient
+## Features
 
-# author
-Ifaz Ahmed Aflan
+-   Mobile Friendly
+-   District Based Information
+-   Division Based Information
+-   Donut Chart
+-   Responsive
+-   Efficient
 
-## credit
+## Author
+
+Ifaz Ahmed Aflan  
+https://github.com/Aflan-63
+
+Sadman Muhib Samyo (Collaborator)  
+https://github.com/ahmedsadman
+
+## Credit
+
 I have used an API developed by
 Sadman Muhib Samyo - API
 
-The source is IEDCR.
-```
+covid19-bd public API: https://github.com/ahmedsadman/covid19-bd
