@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { MDBCard, MDBRow, MDBCol } from 'mdbreact';
-import axios from 'axios';
+import {
+	dhakaDivision,
+	rajshahiDivision,
+	rangpurDivision,
+	chittagongDivision,
+	khulnaDivision,
+	barishalDivision,
+	mymensinghDivision,
+	sylhetDivision,
+} from '../../../constants';
 
 const cardStyle = {
 	background: '#98C9C5',
@@ -34,95 +43,6 @@ export default class AdminCardSection1 extends Component {
 	}
 
 	render() {
-		const dhakaDivision = [
-			'Dhaka City',
-			'Dhaka (District)',
-			'Faridpur',
-			'Gazipur',
-			'Gopalganj',
-			'Kishoreganj',
-			'Madaripur',
-			'Manikganj',
-			'Munshigonj',
-			'Narayanganj',
-			'Narshingdi',
-			'Rajbari',
-			'Shariatpur',
-			'Tangail',
-		];
-
-		const rangpurDivision = [
-			'Dinajpur',
-			'Gaibandha',
-			'Kurigram',
-			'Lalmonirhat',
-			'Nilphamari',
-			'Panchagarh',
-			'Rangpur',
-			'Thakurgaon',
-		];
-
-		const chittagongDivision = [
-			'Chattogram',
-			'Cox’s bazar',
-			'Cumilla',
-			'B. Baria',
-			'Laksmipur',
-			'Chandpur',
-			'Bandarban',
-			'Feni',
-			'Khagrachhari',
-			'Noakhali',
-			'Rangamati',
-		];
-
-		const barishalDivision = [
-			'Barguna',
-			'Barishal',
-			'Bhola',
-			'Jhalokathi',
-			'Potuakhali',
-			'Kushtia',
-		];
-
-		const khulnaDivision = [
-			'Bagerhat',
-			'Chuadanga',
-			'Jashore',
-			'Jhenaidah',
-			'Khulna',
-			'Kushtia',
-			'Magura',
-			'Meherpur',
-			'Narail',
-			'Satkhira',
-		];
-
-		const sylhetDivision = [
-			'Hobiganj',
-			'Moulovi Bazar',
-			'Sunamganj',
-			'Sylhet',
-		];
-
-		const mymensinghDivision = [
-			'Jamalpur',
-			'Mymensingh',
-			'Netrokona',
-			'Sherpur',
-		];
-
-		const rajshahiDivision = [
-			'Bogura',
-			'Jaipurhat',
-			'Naogaon',
-			'Natore',
-			'Chapainawabganj',
-			'Pabna',
-			'Rajshahi',
-			'Sirajganj',
-		];
-
 		return (
 			<MDBRow className='mb-4'>
 				<MDBCol xl='3' md='10' className='mb-r'>
