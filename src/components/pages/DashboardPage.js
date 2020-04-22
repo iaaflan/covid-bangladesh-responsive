@@ -26,13 +26,12 @@ export default class DashboardPage extends Component {
 
 	async fetchData() {
 		try {
-			const response = await axios.get(
-				'https://corona-bd.herokuapp.com/district'
-			);
+			const response = await axios.get('http://localhost:3002/district');
 			const divisionalCount = this.getDivisionalCount(
 				divisions,
 				response.data.data
 			);
+			console.log('dist', response.data.data);
 			this.setState({
 				districtData: response.data.data,
 				divisionalCount,
@@ -68,17 +67,29 @@ export default class DashboardPage extends Component {
 		let list = [];
 
 		divisionLabels.forEach((division) => {
-			const count = data.reduce((acc, item) => {
+			// const count = data.reduce((acc, item) => {
+			// 	if (
+			// 		divisionList[division].findIndex((i) => i === item.name) !==
+			// 		-1
+			// 	) {
+			// 		return acc + item.count;
+			// 	}
+			// 	return acc;
+			// }, 0);
+			let count = 0;
+			let prev_count = 0;
+
+			data.forEach((item) => {
 				if (
 					divisionList[division].findIndex((i) => i === item.name) !==
 					-1
 				) {
-					return acc + item.count;
+					count += item.count;
+					prev_count += item.prev_count;
 				}
-				return acc;
-			}, 0);
+			});
 
-			list.push({ name: division, count });
+			list.push({ name: division, count, prev_count });
 		});
 
 		// sort the list

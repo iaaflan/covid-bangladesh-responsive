@@ -33,6 +33,7 @@ export default class TableSection extends Component {
 				const obj = {};
 				obj['name'] = cityName;
 				obj['count'] = 0;
+				obj['prev_count'] = 0;
 				obj['id'] = cityName;
 				zeroCountList.push(obj);
 			}
@@ -50,7 +51,25 @@ export default class TableSection extends Component {
 			<tr key={item.id}>
 				<td>{index + 1}</td>
 				<td>{item.name}</td>
-				<td>{item.count}</td>
+				{item.count === item.prev_count ? (
+					<td>{item.count}</td>
+				) : (
+					<td>
+						{item.count}{' '}
+						<span
+							style={{
+								fontSize: '0.9em',
+								display: 'inline-block',
+								marginLeft: '6px',
+								fontWeight: 500,
+								color: 'gray',
+							}}
+						>
+							({item.count - item.prev_count > 0 && '+'}
+							{item.count - item.prev_count})
+						</span>
+					</td>
+				)}
 			</tr>
 		));
 	}
