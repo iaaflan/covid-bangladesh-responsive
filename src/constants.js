@@ -44,7 +44,6 @@ export const divisions = {
 		'Bhola',
 		'Jhalokathi',
 		'Potuakhali',
-		'Kushtia',
 		'Pirojpur',
 	],
 	Khulna: [
