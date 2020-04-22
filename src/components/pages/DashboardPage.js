@@ -26,12 +26,13 @@ export default class DashboardPage extends Component {
 
 	async fetchData() {
 		try {
-			const response = await axios.get('http://localhost:3002/district');
+			const response = await axios.get(
+				'https://corona-bd.herokuapp.com/district'
+			);
 			const divisionalCount = this.getDivisionalCount(
 				divisions,
 				response.data.data
 			);
-			console.log('dist', response.data.data);
 			this.setState({
 				districtData: response.data.data,
 				divisionalCount,
