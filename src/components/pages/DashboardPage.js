@@ -12,9 +12,12 @@ export default class DashboardPage extends Component {
 		this.state = {
 			districtData: [],
 			divisionalCount: [],
-			totalInfected: null,
+			totalPositive: null,
 			totalDeath: null,
 			totalRecovered: null,
+			positive24: null,
+			death24: null,
+			recovered24: null,
 			lastUpdate: '',
 		};
 	}
@@ -46,13 +49,16 @@ export default class DashboardPage extends Component {
 	async fetchCount() {
 		try {
 			const response = await axios.get(
-				'https://covid19.mathdro.id/api/countries/BD'
+				'https://corona-bd.herokuapp.com/stats'
 			);
 			const { data } = response;
 			this.setState({
-				totalDeath: data.deaths.value,
-				totalInfected: data.confirmed.value,
-				totalRecovered: data.recovered.value,
+				totalDeath: data.death.total,
+				totalPositive: data.positive.total,
+				totalRecovered: data.recovered.total,
+				positive24: data.positive.last24,
+				death24: data.death.last24,
+				recovered24: data.recovered.last24,
 			});
 		} catch (e) {
 			console.log(e);
@@ -99,6 +105,7 @@ export default class DashboardPage extends Component {
 	}
 
 	render() {
+		const increaseStyle = { color: 'gray', fontSize: '0.8em' };
 		return (
 			<React.Fragment>
 				<br />
@@ -108,13 +115,31 @@ export default class DashboardPage extends Component {
 					</span>{' '}
 					- Statistics
 				</h1>
-				<h3 style={{ textAlign: 'center' }}>
-					Infected: <b>{this.state.totalInfected}</b>&nbsp; Death:{' '}
-					<b>{this.state.totalDeath}</b>
-				</h3>
-				<h3 style={{ textAlign: 'center' }}>
-					Recovered: <b>{this.state.totalRecovered}</b>
-				</h3>
+				<h4 style={{ textAlign: 'center' }}>
+					Positive:{' '}
+					<b>
+						{this.state.totalPositive}{' '}
+						<span style={increaseStyle}>
+							(+{this.state.positive24})
+						</span>
+					</b>
+					&nbsp; Death:{' '}
+					<b>
+						{this.state.totalDeath}{' '}
+						<span style={increaseStyle}>
+							(+{this.state.death24})
+						</span>
+					</b>
+				</h4>
+				<h4 style={{ textAlign: 'center' }}>
+					Recovered:{' '}
+					<b>
+						{this.state.totalRecovered}{' '}
+						<span style={increaseStyle}>
+							(+{this.state.recovered24})
+						</span>
+					</b>
+				</h4>
 				<br />
 				<br />
 
